@@ -54,12 +54,11 @@ public class CargoTask extends DefaultTask {
     private List<File> outputFiles;
 
     /**
-     * <b>For internal use only.</b>
      * Configures this task with the given options.
      *
      * @param config Extension object to fetch options from.
      */
-    protected void configure(CargoExtension config) {
+    public void configure(CargoExtension config) {
         Project project = getProject();
 
         if (config.cargoCommand != null && config.cargoCommand.isEmpty()) {
