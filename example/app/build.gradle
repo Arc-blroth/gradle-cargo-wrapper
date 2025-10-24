@@ -2,7 +2,11 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'ai.arcblroth.cargo.example.Main'
+var mainClassName = 'ai.arcblroth.cargo.example.Main'
+
+application {
+    mainClass = mainClassName
+}
 
 configurations {
     // Declare a custom configuration to
