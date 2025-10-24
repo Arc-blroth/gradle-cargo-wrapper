@@ -20,7 +20,9 @@ import org.gradle.api.Project;
 import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.OutputFiles;
 import org.gradle.api.tasks.TaskAction;
+import org.gradle.process.ExecOperations;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,12 @@ public class CargoTask extends DefaultTask {
     private File workingDir;
 
     private List<File> outputFiles;
+
+    private ExecOperations execOperations;
+
+    @Inject CargoTask(ExecOperations execOperations) {
+        this.execOperations = execOperations;
+    }
 
     /**
      * Configures this task with the given options.
@@ -102,8 +110,7 @@ public class CargoTask extends DefaultTask {
      */
     @TaskAction
     public void build() {
-        Project project = getProject();
-        project.exec(spec -> {
+        execOperations.exec(spec -> {
             spec.commandLine(this.cargoCommand);
             spec.args(args);
             spec.workingDir(workingDir);
