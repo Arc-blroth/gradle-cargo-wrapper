@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 /**
  * The main Cargo wrapper task.
  */
-public class CargoTask extends DefaultTask {
+public abstract class CargoTask extends DefaultTask {
 
     private String cargoCommand;
     private List<String> args;
@@ -57,7 +57,7 @@ public class CargoTask extends DefaultTask {
 
     private ExecOperations execOperations;
 
-    @Inject CargoTask(ExecOperations execOperations) {
+    @Inject public CargoTask(ExecOperations execOperations) {
         this.execOperations = execOperations;
     }
 
